@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeoLauncher — Portal Aplikasi Digital Sekolah (Percuma)</title>
+<meta name="description" content="Satu portal untuk semua aplikasi dan sistem sekolah anda. Mesra telefon, jenama sekolah sendiri, dan 100% percuma untuk semua sekolah.">
+<meta property="og:title" content="NeoLauncher — Portal Aplikasi Digital Sekolah">
+<meta property="og:description" content="Kumpulkan semua pautan sistem sekolah dalam satu portal cantik. Percuma untuk semua.">
+<meta property="og:image" content="img/utama.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#140a1c;--ink-2:#4a4256;--muted:#7a7287;--line:#ece8f1;--bg:#fbfaf8;--card:#fff;
+  --brand:#3b154c;--brand-2:#5b2a72;--brand-soft:#f4eef8;
+  --accent:#f97316;--accent-2:#ea580c;--accent-soft:#fff3e9;
+  --ok:#15803d;--ok-soft:#ecfdf3;--bad:#b42318;--bad-soft:#fef3f2;
+  --r:20px;--shadow:0 1px 2px rgba(20,10,28,.04),0 12px 32px -12px rgba(20,10,28,.12);
+  --form:"https://forms.gle/quX5bHVY3hMuBvqQ7";
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink-2);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{color:var(--ink);line-height:1.15;letter-spacing:-.02em}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.ico{width:20px;height:20px;flex-shrink:0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-2);background:var(--brand-soft);padding:6px 12px;border-radius:999px}
+.sec{padding:96px 0}
+.sec-head{max-width:680px;margin:0 auto 52px;text-align:center}
+.sec-head h2{font-size:clamp(28px,4vw,42px);margin:14px 0 12px}
+.sec-head p{font-size:17px}
+
+/* Butang */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:700;font-size:15px;padding:14px 22px;border-radius:14px;transition:.2s;white-space:nowrap;border:0;cursor:pointer;font-family:inherit}
+.btn-accent{background:var(--accent);color:#fff;box-shadow:0 10px 24px -10px rgba(249,115,22,.7)}
+.btn-accent:hover{background:var(--accent-2);transform:translateY(-2px)}
+.btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:#d9d2e3;transform:translateY(-2px)}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(251,250,248,.85);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:.2s}
+.nav.scrolled{border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink);font-size:18px}
+.logo-mark{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#8b1cc8,#e0123c)}
+.nav-links{display:flex;gap:28px;font-size:14px;font-weight:600}
+.nav-links a{color:var(--ink-2)}.nav-links a:hover{color:var(--ink)}
+.nav .btn{padding:10px 16px;font-size:14px}
+
+/* Hero */
+.hero{position:relative;padding:64px 0 120px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto;height:620px;background:radial-gradient(600px 300px at 80% 30%,rgba(139,28,200,.12),transparent 70%),radial-gradient(500px 280px at 10% 10%,rgba(249,115,22,.10),transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:6px 14px 6px 6px;border-radius:999px;font-size:13px;font-weight:600;color:var(--ink);box-shadow:var(--shadow)}
+.badge b{background:var(--ok);color:#fff;font-size:11px;padding:3px 9px;border-radius:999px;letter-spacing:.04em}
+.hero h1{font-size:clamp(36px,5.4vw,60px);font-weight:800;margin:22px 0 18px}
+.hero h1 em{font-style:normal;background:linear-gradient(120deg,#8b1cc8,#e0123c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{font-size:18px;max-width:540px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 26px}
+.ticks{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;font-weight:600;color:var(--ink)}
+.ticks span{display:inline-flex;align-items:center;gap:6px}
+.ticks svg{color:var(--ok);width:18px;height:18px}
+
+/* Tiga telefon */
+.phones{position:relative;height:600px}
+.phone{position:absolute;left:50%;top:50%;width:272px;aspect-ratio:590/1074;border-radius:38px;background:#0f0a14;padding:9px;box-shadow:0 40px 80px -30px rgba(20,10,28,.45),0 0 0 1px rgba(20,10,28,.08)}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:30px;cursor:zoom-in}
+.phone::after{content:"";position:absolute;top:16px;left:50%;width:70px;height:18px;margin-left:-35px;border-radius:12px;background:#0f0a14}
+.phone.p1{z-index:3;transform:translate(-50%,-50%)}
+.phone.p2{z-index:2;width:232px;transform:translate(-118%,-42%) rotate(-7deg);opacity:.97}
+.phone.p3{z-index:2;width:232px;transform:translate(18%,-42%) rotate(7deg);opacity:.97}
+.chip{position:absolute;z-index:4;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 14px;font-size:13px;font-weight:700;color:var(--ink);box-shadow:var(--shadow);animation:bob 5s ease-in-out infinite}
+.chip small{display:block;font-weight:500;color:var(--muted);font-size:11px}
+.chip i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center}
+.chip.c-a{top:70px;left:-6px}.chip.c-a i{background:var(--ok-soft);color:var(--ok)}
+.chip.c-b{bottom:80px;right:-6px;animation-delay:-2.5s}.chip.c-b i{background:var(--accent-soft);color:var(--accent-2)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* Statistik */
+.stats{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);display:grid;grid-template-columns:repeat(4,1fr);margin-top:-56px;position:relative;z-index:5}
+.stat{padding:26px 24px;text-align:center}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat b{display:block;font-size:34px;font-weight:800;color:var(--ink);letter-spacing:-.03em}
+.stat span{font-size:13px;font-weight:600;color:var(--muted)}
+
+/* Sebelum vs selepas */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.vs-card{border-radius:var(--r);padding:30px;border:1px solid var(--line);background:#fff}
+.vs-card h3{display:flex;align-items:center;gap:10px;font-size:20px;margin-bottom:20px}
+.vs-card h3 i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center}
+.vs-card.bad h3 i{background:var(--bad-soft);color:var(--bad)}
+.vs-card.good{border-color:#cfe9d8;box-shadow:0 20px 40px -24px rgba(21,128,61,.35)}
+.vs-card.good h3 i{background:var(--ok-soft);color:var(--ok)}
+.vs-card li{list-style:none;display:flex;gap:12px;padding:12px 0;border-top:1px dashed var(--line);font-size:15px}
+.vs-card li:first-child{border-top:0}
+.vs-card li svg{width:20px;height:20px;margin-top:2px}
+.vs-card.bad li svg{color:var(--bad)}.vs-card.good li svg{color:var(--ok)}
+.vs-card li b{color:var(--ink)}
+
+/* Ciri */
+.f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.f{padding:28px;border-radius:var(--r);border:1px solid var(--line);background:rgba(255,255,255,.6);transition:.25s}
+.f:hover{transform:translateY(-4px);box-shadow:var(--shadow);background:#fff}
+.f i{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px}
+.f h3{font-size:18px;margin-bottom:8px}.f p{font-size:15px}
+.c1 i{background:#fff3e9;color:#ea580c}.c2 i{background:#f4eef8;color:#6b2f86}.c3 i{background:#eaf4ff;color:#1d6fd8}
+.c4 i{background:#ecfdf3;color:#15803d}.c5 i{background:#fff1f6;color:#c0266b}.c6 i{background:#fef9e7;color:#b7791f}
+
+/* Tab modul */
+.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
+.tab{font-family:inherit;font-size:14px;font-weight:700;padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink-2);cursor:pointer;transition:.2s}
+.tab.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.panel{display:none;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:28px;padding:44px;box-shadow:var(--shadow)}
+.panel.on{display:grid;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.panel .shot{justify-self:center;width:260px;border-radius:30px;padding:8px;background:#0f0a14;box-shadow:0 30px 60px -28px rgba(20,10,28,.5)}
+.panel .shot img{border-radius:23px;cursor:zoom-in}
+.panel h3{font-size:28px;margin:12px 0 12px}
+.panel p{font-size:16px;margin-bottom:20px}
+.checks li{list-style:none;display:flex;gap:10px;padding:7px 0;color:var(--ink);font-weight:500}
+.checks svg{width:22px;height:22px;color:var(--ok);flex-shrink:0}
+
+/* Kalkulator */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:0;background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow)}
+.calc-in{padding:40px}
+.calc-in h3{font-size:24px;margin-bottom:6px}
+.field{margin-top:26px}
+.field label{display:flex;justify-content:space-between;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:10px}
+.field output{color:var(--brand-2);font-weight:800}
+input[type=range]{width:100%;accent-color:var(--accent);height:6px}
+.calc-out{padding:40px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#e9dcf2;display:flex;flex-direction:column;justify-content:center}
+.calc-out .big{font-size:clamp(44px,6vw,64px);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1;margin:10px 0}
+.calc-out .big small{font-size:20px;font-weight:700;color:#f3c9a5}
+.calc-out p{font-size:14px;opacity:.9}
+.calc-out .free{margin-top:22px;display:inline-flex;align-self:flex-start;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:8px 14px;border-radius:12px;font-size:13px;font-weight:700;color:#fff}
+
+/* Langkah */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.step{position:relative;padding:30px;border-radius:var(--r);background:#fff;border:1px solid var(--line)}
+.step::before{counter-increment:s;content:counter(s);width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--brand);color:#fff;font-weight:800;margin-bottom:18px}
+.step h3{font-size:18px;margin-bottom:8px}.step p{font-size:15px}
+
+/* Harga */
+.price{max-width:820px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;background:#fff;border:2px solid var(--accent);border-radius:28px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(249,115,22,.45)}
+.price-l{padding:40px;background:var(--accent-soft)}
+.price-l .tag{display:inline-block;background:var(--accent);color:#fff;font-size:12px;font-weight:800;letter-spacing:.06em;padding:5px 12px;border-radius:999px}
+.price-l h3{font-size:22px;margin:16px 0 4px}
+.amt{font-size:64px;font-weight:800;color:var(--ink);letter-spacing:-.04em;line-height:1.1}
+.amt sup{font-size:24px;vertical-align:super;margin-right:4px}
+.price-l p{font-size:14px;margin:8px 0 24px}
+.price-r{padding:40px}
+.price-r h4{font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px}
+
+/* FAQ */
+.faq{display:grid;grid-template-columns:2fr 3fr;gap:56px}
+.faq h2{font-size:clamp(28px,4vw,40px);margin:14px 0 12px}
+details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:0 22px;margin-bottom:12px;transition:.2s}
+details[open]{box-shadow:var(--shadow)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-weight:700;color:var(--ink);font-size:16px}
+summary::-webkit-details-marker{display:none}
+summary i{width:28px;height:28px;flex-shrink:0;border-radius:8px;background:var(--brand-soft);color:var(--brand-2);display:grid;place-items:center;transition:.25s}
+details[open] summary i{transform:rotate(45deg);color:var(--accent-2);background:var(--accent-soft)}
+details p{padding:0 0 20px;font-size:15px}
+
+/* Climax */
+.climax{position:relative;overflow:hidden;border-radius:32px;padding:72px 40px;text-align:center;color:#e9dcf2;background:linear-gradient(135deg,#3b154c 0%,#5b2a72 55%,#8a3a6a 100%)}
+.climax::before,.climax::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(10px);pointer-events:none}
+.climax::before{top:-200px;right:-120px;background:radial-gradient(circle,rgba(249,115,22,.35),transparent 65%)}
+.climax::after{bottom:-220px;left:-140px;background:radial-gradient(circle,rgba(224,18,60,.3),transparent 65%)}
+.climax>*{position:relative}
+.climax h2{color:#fff;font-size:clamp(28px,4.4vw,46px);max-width:760px;margin:0 auto 16px}
+.climax p{max-width:560px;margin:0 auto 32px;font-size:17px}
+.climax .btn-accent{font-size:17px;padding:17px 28px}
+.climax small{display:block;margin-top:18px;font-size:13px;opacity:.8}
+
+footer{padding:40px 0;text-align:center;font-size:13px;color:var(--muted)}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(20,10,28,.85);display:none;place-items:center;padding:24px;cursor:zoom-out}
+.lb.on{display:grid}
+.lb img{max-height:92vh;width:auto;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+
+/* Reveal */
+/* ===== Animasi ===== */
+/* 1. Urutan muat hero */
+@keyframes up{from{opacity:0;translate:0 26px}to{opacity:1;translate:0 0}}
+.hero-copy>*{animation:up .8s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy>*:nth-child(2){animation-delay:.08s}.hero-copy>*:nth-child(3){animation-delay:.16s}
+.hero-copy>*:nth-child(4){animation-delay:.24s}.hero-copy>*:nth-child(5){animation-delay:.32s}
+
+/* 2. Telefon kembang seperti kipas, kemudian terapung */
+@keyframes rise{from{opacity:0;translate:0 60px}}
+@keyframes fan{from{opacity:0;transform:translate(-50%,-46%) rotate(0deg) scale(.9)}}
+@keyframes float{50%{translate:0 -12px}}
+.phones{transition:transform .5s cubic-bezier(.2,.7,.2,1);transform:perspective(1400px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+.phone.p1{animation:rise 1s .25s cubic-bezier(.2,.7,.2,1) both,float 6s 1.4s ease-in-out infinite}
+.phone.p2{animation:fan 1.1s .55s cubic-bezier(.2,.7,.2,1) both,float 6s 2.2s ease-in-out infinite}
+.phone.p3{animation:fan 1.1s .55s cubic-bezier(.2,.7,.2,1) both,float 6s 3s ease-in-out infinite}
+.chip{opacity:0;animation:pop .6s 1.2s cubic-bezier(.3,1.5,.5,1) forwards,bob 5s 1.8s ease-in-out infinite}
+.chip.c-b{animation-delay:1.45s,2.3s}
+@keyframes pop{from{opacity:0;scale:.6}to{opacity:1;scale:1}}
+
+/* 3. Teks gradien berkilau */
+.hero h1 em{background-image:linear-gradient(120deg,#8b1cc8,#e0123c,#f97316,#8b1cc8);background-size:300% 100%;animation:sheen 8s linear infinite}
+@keyframes sheen{to{background-position:300% 0}}
+
+/* 4. Latar hero bergerak perlahan */
+.hero::before{animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{translate:-40px 30px;scale:1.08}}
+.dots{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(91,42,114,.13) 1.2px,transparent 1.2px);background-size:22px 22px;-webkit-mask-image:radial-gradient(60% 60% at 70% 40%,#000,transparent);mask-image:radial-gradient(60% 60% at 70% 40%,#000,transparent)}
+
+/* 5. Kilauan pada butang utama */
+.btn-accent{position:relative;overflow:hidden;isolation:isolate}
+.btn-accent::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);translate:-130% 0;animation:shine 3.6s 2s ease-in-out infinite}
+@keyframes shine{55%,100%{translate:130% 0}}
+.btn .ico{transition:translate .25s}.btn:hover .ico{translate:3px 0}
+
+/* 6. Jalur aplikasi bergerak */
+.marquee{margin-top:40px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marquee p{text-align:center;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.track{display:flex;gap:12px;width:max-content;animation:slide 40s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600;color:var(--ink)}
+.track span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--d,#8b1cc8)}
+@keyframes slide{to{translate:calc(-50% - 6px) 0}}
+
+/* 7. Muncul ketika skrol (bermula dari keadaan kelihatan) */
+@supports (animation-timeline: view()){
+  .rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+  @keyframes rv{from{opacity:.25;translate:0 56px;scale:.96}}
+}
+
+/* 8. Ikon ciri bergoyang, langkah dan kalkulator */
+.f:hover i{animation:wig .6s ease}
+@keyframes wig{25%{rotate:-10deg;scale:1.1}50%{rotate:8deg}75%{rotate:-4deg}}
+.step::before{transition:transform .3s}.step:hover::before{transform:rotate(-8deg) scale(1.12)}
+.calc-out .big span{display:inline-block}
+.bump{animation:bump .35s ease}
+@keyframes bump{40%{scale:1.08}}
+
+/* 9. Cahaya kad penutup */
+.climax::before{animation:glow 9s ease-in-out infinite alternate}
+.climax::after{animation:glow 11s ease-in-out infinite alternate-reverse}
+@keyframes glow{to{translate:-60px 40px;scale:1.2}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .chip{opacity:1}html{scroll-behavior:auto}
+}
+
+/* Responsif */
+@media (max-width:960px){
+  .nav-links{display:none}
+  .hero .wrap{grid-template-columns:1fr;text-align:center}
+  .hero .lead{margin:0 auto}.cta-row,.ticks{justify-content:center}
+  .phones{height:540px;margin-top:10px}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .panel{grid-template-columns:1fr;gap:32px;padding:32px 24px;text-align:center}
+  .panel .checks{display:inline-block;text-align:left}
+  .calc,.price{grid-template-columns:1fr}
+  .faq{grid-template-columns:1fr;gap:28px}
+}
+@media (max-width:640px){
+  .sec{padding:72px 0}
+  .wrap{padding:0 16px}
+  .nav .btn span{display:none}
+  .hero{padding:40px 0 100px}
+  .cta-row .btn{flex:1 1 100%}
+  .phones{height:460px}
+  .phone.p1{width:218px;border-radius:32px}.phone.p1 img{border-radius:25px}
+  .phone.p2,.phone.p3{width:180px}
+  .phone.p2{transform:translate(-106%,-42%) rotate(-7deg)}
+  .phone.p3{transform:translate(6%,-42%) rotate(7deg)}
+  .chip{font-size:12px;padding:8px 10px}.chip i{width:28px;height:28px}
+  .chip.c-a{left:0;top:30px}.chip.c-b{right:0;bottom:40px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .stat b{font-size:28px}
+  .vs,.f-grid,.steps{grid-template-columns:1fr}
+  .calc-in,.calc-out,.price-l,.price-r{padding:28px 22px}
+  .climax{padding:56px 22px;border-radius:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- 1. Navigasi -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="#" class="logo"><span class="logo-mark"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>NeoLauncher</a>
+    <div class="nav-links">
+      <a href="#kelebihan">Kelebihan</a><a href="#ciri">Ciri-Ciri</a><a href="#kalkulator">Kalkulator</a><a href="#percuma">Percuma</a><a href="#soalan">Soalan Lazim</a>
+    </div>
+    <a class="btn btn-accent" href="https://forms.gle/quX5bHVY3hMuBvqQ7" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg><span>Tempah Percuma</span></a>
+  </div>
+</nav>
+
+<!-- 2. Hero -->
+<header class="hero">
+  <div class="dots" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="badge"><b>PERCUMA</b> Mesra telefon &amp; komputer</span>
+      <h1>Semua sistem sekolah anda, <em>dalam satu portal.</em></h1>
+      <p class="lead">Tak perlu lagi simpan berpuluh pautan dalam WhatsApp atau bookmark. NeoLauncher kumpulkan semua aplikasi sekolah — SMART PANITIA, kehadiran, e-Disiplin, DELIMa, Classroom — dalam satu portal berjenama sekolah anda sendiri.</p>
+      <div class="cta-row">
+        <a class="btn btn-accent" href="https://forms.gle/quX5bHVY3hMuBvqQ7" target="_blank" rel="noopener">Tempah Portal Sekolah Anda <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        <a class="btn btn-ghost" href="#ciri">Lihat Ciri-Ciri <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+      </div>
+      <div class="ticks">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>RM0 selamanya</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Tiada aplikasi perlu dipasang</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Data dalam Google Drive sekolah</span>
+      </div>
+    </div>
+    <div class="phones" id="phones">
+      <div class="phone p2"><img class="zoomable" src="img/menu.jpg" alt="Menu pautan laman KPM: Portal KPM, DELIMa, IDME, SAPS, HRMIS"></div>
+      <div class="phone p1"><img class="zoomable" src="img/utama.jpg" alt="Laman utama portal SMK Seri Damai dengan carian dan ikon aplikasi"></div>
+      <div class="phone p3"><img class="zoomable" src="img/kategori.jpg" alt="Senarai aplikasi mengikut kategori Kurikulum, HEM dan Kokurikulum"></div>
+      <div class="chip c-a"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></i><div>Cari dalam 1 saat<small>Taip, terus jumpa</small></div></div>
+      <div class="chip c-b"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg></i><div>Jenama sekolah sendiri<small>Logo, banner &amp; warna</small></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 3. Statistik -->
+<div class="wrap">
+  <div class="stats rv">
+    <div class="stat"><b>RM0</b><span>Kos langganan, selamanya</span></div>
+    <div class="stat"><b>1</b><span>Pautan untuk semua sistem</span></div>
+    <div class="stat"><b>3 klik</b><span>Ke mana-mana aplikasi</span></div>
+    <div class="stat"><b data-count="100" data-suffix="%">100%</b><span>Mesra telefon pintar</span></div>
+  </div>
+  <div class="marquee" aria-label="Contoh aplikasi dalam portal">
+    <p>Contoh sistem yang dikumpulkan dalam satu portal</p>
+    <div class="track"><span style="--d:#2563eb">SMART PANITIA</span><span style="--d:#2563eb">OPR</span><span style="--d:#2563eb">TakwimMatrik Pro</span><span style="--d:#16a34a">e-Pembelajaran</span><span style="--d:#16a34a">Bank Soalan</span><span style="--d:#16a34a">Murid Inspirasi Delima</span><span style="--d:#ea580c">e-Kehadiran Murid</span><span style="--d:#ea580c">e-Kehadiran Guru</span><span style="--d:#ea580c">e-Disiplin</span><span style="--d:#c0266b">e-Sukan</span><span style="--d:#c0266b">Kelab &amp; Persatuan</span><span style="--d:#c0266b">Aktiviti Sekolah</span><span style="--d:#8b1cc8">DELIMa</span><span style="--d:#8b1cc8">Google Classroom</span><span style="--d:#8b1cc8">IDME</span><span style="--d:#8b1cc8">SAPS</span><span style="--d:#8b1cc8">HRMIS</span><span aria-hidden="true" style="--d:#2563eb">SMART PANITIA</span><span aria-hidden="true" style="--d:#2563eb">OPR</span><span aria-hidden="true" style="--d:#2563eb">TakwimMatrik Pro</span><span aria-hidden="true" style="--d:#16a34a">e-Pembelajaran</span><span aria-hidden="true" style="--d:#16a34a">Bank Soalan</span><span aria-hidden="true" style="--d:#16a34a">Murid Inspirasi Delima</span><span aria-hidden="true" style="--d:#ea580c">e-Kehadiran Murid</span><span aria-hidden="true" style="--d:#ea580c">e-Kehadiran Guru</span><span aria-hidden="true" style="--d:#ea580c">e-Disiplin</span><span aria-hidden="true" style="--d:#c0266b">e-Sukan</span><span aria-hidden="true" style="--d:#c0266b">Kelab &amp; Persatuan</span><span aria-hidden="true" style="--d:#c0266b">Aktiviti Sekolah</span><span aria-hidden="true" style="--d:#8b1cc8">DELIMa</span><span aria-hidden="true" style="--d:#8b1cc8">Google Classroom</span><span aria-hidden="true" style="--d:#8b1cc8">IDME</span><span aria-hidden="true" style="--d:#8b1cc8">SAPS</span><span aria-hidden="true" style="--d:#8b1cc8">HRMIS</span></div>
+  </div>
+</div>
+
+<!-- 4. Sebelum vs Selepas -->
+<section class="sec" id="kelebihan">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Kenapa NeoLauncher</span>
+      <h2>Penat cari pautan sistem setiap hari?</h2>
+      <p>Guru dan staf sekolah guna lebih 10 sistem berbeza. Pautan tercicir dalam grup WhatsApp, ditanya berulang kali, dan hilang bila tukar telefon.</p>
+    </div>
+    <div class="vs">
+      <div class="vs-card bad rv">
+        <h3><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></i>Cara lama</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg><span>Skrol grup WhatsApp untuk cari <b>pautan yang dikongsi bulan lepas</b></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg><span>Admin ICT <b>ditanya soalan sama</b> berpuluh kali seminggu</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg><span>Pautan lama masih beredar walaupun sistem <b>sudah bertukar</b></span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg><span>Guru baharu <b>tak tahu</b> sistem apa yang sekolah guna</span></li>
+        </ul>
+      </div>
+      <div class="vs-card good rv">
+        <h3><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i>Dengan NeoLauncher</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>Satu pautan</b> sahaja untuk dikongsi kepada semua warga sekolah</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Semua aplikasi <b>tersusun ikut kategori</b> dan boleh dicari</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Admin tukar pautan sekali, <b>semua orang terus dapat</b> yang terkini</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Guru baharu <b>nampak semua sistem</b> sekolah pada hari pertama</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5a. Grid ciri -->
+<section class="sec" id="ciri" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Ciri-ciri</span>
+      <h2>Semua yang sekolah perlukan. Tiada yang tak perlu.</h2>
+      <p>Direka untuk guru yang sibuk: buka, cari, tekan. Selesai.</p>
+    </div>
+    <div class="f-grid">
+      <div class="f c1 rv"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></i><h3>Aplikasi ikut kategori</h3><p>Susun sistem mengikut Pengurusan, Kurikulum, HEM, Kokurikulum atau apa sahaja kategori sekolah anda.</p></div>
+      <div class="f c2 rv"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></i><h3>Carian pantas</h3><p>Taip beberapa huruf, aplikasi terus muncul. Tak perlu ingat di kategori mana ia disimpan.</p></div>
+      <div class="f c3 rv"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3-3-7 7"/></svg></i><h3>Jenama sekolah sendiri</h3><p>Muat naik logo, gambar banner sekolah, dan pilih warna tema. Portal nampak macam sekolah anda yang bina.</p></div>
+      <div class="f c4 rv"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg></i><h3>Pautan laman KPM</h3><p>Menu sisi untuk laman yang kerap diguna — Portal KPM, DELIMa, IDME, SAPS, HRMIS — lengkap dengan ikon laman.</p></div>
+      <div class="f c5 rv"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></i><h3>Nav bawah gaya aplikasi</h3><p>Butang pantas di bawah skrin telefon untuk DELIMa dan Google Classroom. Terasa macam aplikasi sebenar.</p></div>
+      <div class="f c6 rv"><i><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.7-7 9-4-1.3-7-4.5-7-9V6z"/><path d="m9 12 2 2 4-4"/></svg></i><h3>Panel pentadbir</h3><p>Tambah, sunting atau padam aplikasi terus dari telefon. Dilindungi kata laluan, hanya admin boleh ubah.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5b. Tab modul -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="tabs rv" role="tablist">
+      <button class="tab on" data-t="0">Laman Utama</button>
+      <button class="tab" data-t="1">Kategori</button>
+      <button class="tab" data-t="2">Pautan KPM</button>
+      <button class="tab" data-t="3">Panel Admin</button>
+    </div>
+    <div class="panel on rv">
+      <div class="shot"><img class="zoomable" src="img/utama.jpg" alt="Laman utama portal"></div>
+      <div><span class="eyebrow">Untuk semua guru</span><h3>Buka sekali, nampak semua.</h3><p>Banner sekolah, tarikh hari ini, kotak carian dan ikon aplikasi berwarna — semuanya dalam satu skrin telefon.</p>
+        <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ikon besar, mudah ditekan dengan ibu jari</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Penapis kategori dengan satu sentuhan</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Boleh "Add to Home Screen" seperti aplikasi</li></ul></div>
+    </div>
+    <div class="panel">
+      <div class="shot"><img class="zoomable" src="img/kategori.jpg" alt="Aplikasi mengikut kategori"></div>
+      <div><span class="eyebrow">Tersusun rapi</span><h3>Setiap unit ada ruangnya sendiri.</h3><p>Kurikulum, HEM, Kokurikulum dan Pengurusan — setiap unit tahu di mana sistem mereka berada.</p>
+        <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Kategori tanpa had</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Muat naik ikon PNG sendiri</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Susunan boleh diubah bila-bila masa</li></ul></div>
+    </div>
+    <div class="panel">
+      <div class="shot"><img class="zoomable" src="img/menu.jpg" alt="Menu pautan laman KPM"></div>
+      <div><span class="eyebrow">Laman luar</span><h3>Laman KPM sentiasa di hujung jari.</h3><p>Menu sisi khas untuk laman rasmi yang guru buka hampir setiap hari, lengkap dengan logo laman tersebut.</p>
+        <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Portal KPM, DELIMa, IDME, SAPS, HRMIS</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ikon laman dipaparkan secara automatik</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Tambah pautan lain mengikut keperluan</li></ul></div>
+    </div>
+    <div class="panel">
+      <div class="shot"><img class="zoomable" src="img/admin.jpg" alt="Panel pentadbir"></div>
+      <div><span class="eyebrow">Untuk admin ICT</span><h3>Urus portal dari telefon.</h3><p>Tak perlu buka komputer. Tambah sistem baharu, tukar pautan atau ikon dalam beberapa saat.</p>
+        <ul class="checks"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ringkasan jumlah aplikasi &amp; kategori</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Aktif / nyahaktif aplikasi tanpa padam</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Perubahan terus dilihat semua pengguna</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Kalkulator -->
+<section class="sec" id="kalkulator" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Kalkulator masa</span>
+      <h2>Berapa banyak masa sekolah anda boleh jimat?</h2>
+      <p>Masa mencari pautan nampak kecil. Darabkan dengan semua guru, setiap hari, sepanjang tahun.</p>
+    </div>
+    <div class="calc rv">
+      <div class="calc-in">
+        <h3>Masukkan angka sekolah anda</h3>
+        <p>Laraskan slider di bawah.</p>
+        <div class="field"><label for="g">Bilangan guru &amp; staf <output id="go">80 orang</output></label><input type="range" id="g" min="10" max="250" step="5" value="80"></div>
+        <div class="field"><label for="m">Minit mencari pautan sehari <output id="mo">3 minit</output></label><input type="range" id="m" min="1" max="15" step="1" value="3"></div>
+        <div class="field"><label for="d">Hari persekolahan setahun <output id="do">190 hari</output></label><input type="range" id="d" min="150" max="220" step="5" value="190"></div>
+      </div>
+      <div class="calc-out">
+        <p>Anggaran masa dijimatkan sekolah anda</p>
+        <div class="big"><span id="res">760</span> <small>jam / tahun</small></div>
+        <p>Bersamaan kira-kira <b id="days" style="color:#fff">95</b> hari bekerja yang boleh dialihkan kepada PdP dan murid.</p>
+        <span class="free">Kos untuk menjimatkannya: RM0</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Tiga langkah -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Mula guna</span>
+      <h2>Portal sekolah anda siap dalam 3 langkah</h2>
+    </div>
+    <div class="steps">
+      <div class="step rv"><h3>Isi borang tempahan</h3><p>Lengkapkan borang ringkas dengan nama sekolah dan maklumat admin. Ambil masa kurang 2 minit.</p></div>
+      <div class="step rv"><h3>Terima portal anda</h3><p>Portal disediakan dalam Google Drive sekolah anda sendiri. Data sekolah kekal milik sekolah.</p></div>
+      <div class="step rv"><h3>Kongsi satu pautan</h3><p>Masukkan aplikasi sekolah, kemudian kongsi pautan portal kepada semua guru. Siap!</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Percuma -->
+<section class="sec" id="percuma" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Harga</span>
+      <h2>Percuma. Untuk semua sekolah.</h2>
+      <p>Tiada pakej tersembunyi, tiada tempoh percubaan, tiada caj tahunan.</p>
+    </div>
+    <div class="price rv">
+      <div class="price-l">
+        <span class="tag">PERCUMA SELAMANYA</span>
+        <h3>NeoLauncher Penuh</h3>
+        <div class="amt"><sup>RM</sup>0</div>
+        <p>Semua ciri, untuk setiap sekolah, tanpa had pengguna.</p>
+        <a class="btn btn-accent" style="width:100%" href="https://forms.gle/quX5bHVY3hMuBvqQ7" target="_blank" rel="noopener">Tempah Sekarang</a>
+      </div>
+      <div class="price-r">
+        <h4>Termasuk</h4>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Aplikasi &amp; kategori tanpa had</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Logo, banner &amp; warna tema sekolah</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Muat naik ikon PNG sendiri</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Menu pautan laman KPM</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Panel pentadbir berkata laluan</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Kemas kini ciri baharu secara automatik</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Soalan lazim -->
+<section class="sec" id="soalan" style="padding-top:0">
+  <div class="wrap faq">
+    <div class="rv">
+      <span class="eyebrow">Soalan lazim</span>
+      <h2>Masih ada soalan?</h2>
+      <p>Jawapan kepada perkara yang biasa ditanya oleh pentadbir dan guru sebelum mula guna.</p>
+    </div>
+    <div class="rv">
+      <details open><summary>Betul ke percuma? Ada caj tersembunyi?<i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Betul. NeoLauncher percuma untuk semua sekolah, tanpa tempoh percubaan dan tanpa yuran tahunan. Portal berjalan di atas akaun Google sekolah anda sendiri.</p></details>
+      <details><summary>Perlu muat turun aplikasi dari Play Store?<i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Tidak. Portal dibuka terus melalui pelayar telefon atau komputer. Guru boleh tekan "Add to Home Screen" supaya ia muncul seperti aplikasi biasa.</p></details>
+      <details><summary>Siapa yang simpan data sekolah kami?<i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Sekolah anda sendiri. Senarai aplikasi, tetapan dan gambar disimpan dalam Google Sheets dan Google Drive milik sekolah.</p></details>
+      <details><summary>Susah ke nak urus? Saya bukan orang IT.<i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Tak susah. Panel pentadbir guna borang biasa: isi nama aplikasi, tampal pautan, pilih kategori dan ikon. Boleh dibuat terus dari telefon.</p></details>
+      <details><summary>Boleh tukar logo, banner dan warna?<i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Boleh. Muat naik logo dan gambar banner sekolah, pilih warna tema, dan tetapkan butang pantas di nav bawah (contohnya DELIMa dan Classroom).</p></details>
+      <details><summary>Bagaimana bila ada ciri baharu?<i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></i></summary><p>Penambahbaikan dihantar secara berpusat, jadi portal sekolah anda dapat ciri baharu tanpa perlu dipasang semula. Data sekolah tidak terjejas.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Climax -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="climax rv">
+      <span class="eyebrow" style="background:rgba(255,255,255,.12);color:#fff">Percuma untuk semua sekolah</span>
+      <h2 style="margin-top:18px">Beri guru anda satu tempat untuk semua sistem sekolah.</h2>
+      <p>Isi borang tempahan sekarang. Portal berjenama sekolah anda akan disediakan tanpa sebarang kos.</p>
+      <a class="btn btn-accent" href="https://forms.gle/quX5bHVY3hMuBvqQ7" target="_blank" rel="noopener">Tempah Portal Percuma <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      <small>Borang mengambil masa kurang 2 minit</small>
+    </div>
+  </div>
+</section>
+
+<footer>© <span id="yr"></span> NeoLauncher · Portal Aplikasi Digital Sekolah · Percuma untuk semua</footer>
+
+<div class="lb" id="lb" aria-hidden="true"><img alt=""></div>
+
+<script>
+(function(){
+  // Nav border bila skrol
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>8)},{passive:true});
+
+  var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Telefon condong ikut tetikus (desktop)
+  var ph=document.getElementById('phones');
+  if(!calm&&matchMedia('(hover:hover)').matches){
+    ph.parentElement.addEventListener('mousemove',function(e){
+      var b=ph.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;
+      ph.style.setProperty('--ry',(x*10).toFixed(2)+'deg');ph.style.setProperty('--rx',(-y*8).toFixed(2)+'deg');
+    });
+    ph.parentElement.addEventListener('mouseleave',function(){ph.style.setProperty('--ry','0deg');ph.style.setProperty('--rx','0deg')});
+  }
+
+  // Pembilang angka bila kelihatan
+  if(!calm&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(!e.isIntersecting)return;io.unobserve(e.target);
+      var el=e.target,to=+el.dataset.count,suf=el.dataset.suffix||'',t0=performance.now();
+      (function tick(t){var k=Math.min(1,(t-t0)/1400),v=Math.round(to*(1-Math.pow(1-k,3)));el.textContent=v+suf;if(k<1)requestAnimationFrame(tick)})(t0);
+    })},{threshold:.6});
+    document.querySelectorAll('[data-count]').forEach(function(el){io.observe(el)});
+  }
+
+  // Tab
+  var tabs=document.querySelectorAll('.tab'),panels=document.querySelectorAll('.panel');
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    tabs.forEach(function(x){x.classList.remove('on')});panels.forEach(function(p){p.classList.remove('on')});
+    t.classList.add('on');panels[+t.dataset.t].classList.add('on');
+  })});
+
+  // Kalkulator: jam = guru × minit × hari / 60
+  var g=document.getElementById('g'),m=document.getElementById('m'),d=document.getElementById('d');
+  function calc(){
+    document.getElementById('go').textContent=g.value+' orang';
+    document.getElementById('mo').textContent=m.value+' minit';
+    document.getElementById('do').textContent=d.value+' hari';
+    var h=Math.round(g.value*m.value*d.value/60),res=document.getElementById('res');
+    res.textContent=h.toLocaleString('ms-MY');
+    res.classList.remove('bump');void res.offsetWidth;res.classList.add('bump');
+    document.getElementById('days').textContent=Math.round(h/8).toLocaleString('ms-MY');
+  }
+  [g,m,d].forEach(function(x){x.addEventListener('input',calc)});calc();
+
+  // Lightbox
+  var lb=document.getElementById('lb'),li=lb.querySelector('img');
+  document.querySelectorAll('.zoomable').forEach(function(img){img.addEventListener('click',function(){li.src=img.src;li.alt=img.alt;lb.classList.add('on')})});
+  lb.addEventListener('click',function(){lb.classList.remove('on')});
+  addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on')});
+
+  document.getElementById('yr').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
